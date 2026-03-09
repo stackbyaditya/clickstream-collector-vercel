@@ -11,7 +11,16 @@ It is ready to deploy on Vercel and stores data in MongoDB Atlas.
 - Session/Traffic: sessionId, referrer, landingPage, pagesVisited (1), dwellTime, adImpressionCount, CTR
 - Events array: raw event timeline (mousemove, click, scroll, visibility)
 
-## Quick setup (Local)
+## Vercel Deployment
+1. Push repo to GitHub.
+2. Import project in Vercel (https://vercel.com).
+3. In Vercel dashboard, set Environment Variable:
+   - `MONGODB_URI` = your MongoDB Atlas connection string
+   - `MONGODB_DB` = database name (e.g., clickstreamdb)
+4. Deploy. The API endpoint `/api/collect` will be used by the frontend to store data.
+
+
+## Quick setup (Local) 
 1. Copy `.env.example` to `.env` and set `MONGODB_URI` and `MONGODB_DB`.
 2. Install dependencies:
    ```
@@ -23,15 +32,7 @@ It is ready to deploy on Vercel and stores data in MongoDB Atlas.
    ```
 4. Open `http://localhost:3000`
 
-## Deploy to Vercel
-1. Push repo to GitHub.
-2. Import project in Vercel (https://vercel.com).
-3. In Vercel dashboard, set Environment Variable:
-   - `MONGODB_URI` = your MongoDB Atlas connection string
-   - `MONGODB_DB` = database name (e.g., clickstreamdb)
-4. Deploy. The API endpoint `/api/collect` will be used by the frontend to store data.
-
+   
 ## Notes
 - The serverless function `/api/collect` stores data to MongoDB.
-- Add a consent banner and inform users this is for academic research.
-- The collector collects activity **only on this page**.
+
