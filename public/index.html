@@ -1,0 +1,55 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clickstream Research Collector</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Clickstream Research Page</h1>
+      <p class="muted">Anonymous interaction data collected for academic research on click-fraud detection.</p>
+    </header>
+
+    <main>
+      <div id="consent" class="consent">
+        <p>This page collects anonymous interaction data (mouse movement, clicks, scrolls) for academic research. No personal info is stored. Do you consent?</p>
+        <div class="actions">
+          <button id="btn-accept" class="btn primary">I Consent</button>
+          <button id="btn-decline" class="btn">Decline</button>
+        </div>
+      </div>
+
+      <section id="content" class="hidden">
+        <div class="card">
+          <h2>Interactive Demo</h2>
+          <p>Move your mouse, scroll, and click the ads below. Data will be recorded anonymously and saved.</p>
+          <div class="ads">
+            <button class="ad">Sponsored: Product A</button>
+            <button class="ad">Sponsored: Product B</button>
+            <button class="ad">Sponsored: Product C</button>
+          </div>
+
+          <div class="info">
+            <p>Session ID: <span id="sessionId"></span></p>
+            <p>Events recorded: <span id="eventCount">0</span></p>
+            <p><small>Close the tab to send data automatically.</small></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Why this matters</h3>
+          <p>Patterns in mouse movement, timing, and device fingerprints help detect automated click fraud.</p>
+        </div>
+      </section>
+
+      <footer>
+        <p class="muted">For research only — instructor: provide informed consent when sharing.</p>
+      </footer>
+    </div>
+  <script src="/app.js"></script>
+</body>
+</html>
