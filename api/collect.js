@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-let cachedClient = null;
+let client;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -10,23 +10,24 @@ export default async function handler(req, res) {
   try {
     const uri = process.env.MONGODB_URI;
 
-    if (!cachedClient) {
-      cachedClient = new MongoClient(uri);
-      await cachedClient.connect();
+    if (!client) {
+      client = new MongoClient(uri);
+      await client.connect();
     }
 
-    const db = cachedClient.db(process.env.MONGODB_DB || "clickstreamdb");
+    const db = client.db(process.env.MONGODB_DB || "clickstreamdb");
 
-    const data = req.body;
+    const body =
+      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
     await db.collection("clickstream").insertOne({
-      ...data,
+      ...body,
       createdAt: new Date(),
     });
 
-    res.status(204).end();
+    return res.status(204).end();
   } catch (err) {
-    console.error("collector error", err);
-    res.status(500).json({ error: err.message });
+    console.error("collector error:", err);
+    return res.status(500).json({ error: err.message });
   }
 }
