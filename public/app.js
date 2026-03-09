@@ -146,3 +146,6 @@ document.getElementById('btn-decline').addEventListener('click', ()=>{
 
 // Send data on unload
 window.addEventListener('beforeunload', sendData);
+
+// also send data every 20 seconds
+setInterval(sendData, 20000);
